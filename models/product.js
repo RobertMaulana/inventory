@@ -3,6 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var Product = sequelize.define('Product', {
     productId: {
       type: DataTypes.INTEGER,
+      // primaryKey: true,
       validate: {
         notEmpty: true,
         isUnique: function(val, next){
@@ -36,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true
       }
     },
-    categoryId: {
+    CategoryId: {
       type: DataTypes.INTEGER,
       validate: {
         notEmpty: true
@@ -45,7 +46,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        // Product.hasMany(models.Category)
+        Product.belongsTo(models.Category, {foreignKey: 'CategoryId'})
       }
     }
   });
