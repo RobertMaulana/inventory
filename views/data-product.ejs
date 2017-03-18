@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Product</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Product</th>
+          <th>Harga</th>
+          <th>Quantity</th>
+          <th>Category Id</th>
+          <th>Edit Product</th>
+          <th>Delete Product</th>
+        </tr>
+      </thead>
+      <tbody>
+        <h3>All Product</h3>
+        <% let no = 0;%>
+        <% data.forEach((product) => { %>
+          <% no++; %>
+          <tr>
+            <td><%= no %></td>
+            <td><%= product.nama_product %></td>
+            <td><%= product.harga %></td>
+            <td><%= product.quantity %></td>
+            <td><%= product.CategoryId %></td>
+            <td><a href="/edit-product/<%=product.productId%>">Edit Product</a></td>
+            <td><a href="/delete-product/<%=product.productId%>">Delete Product</a></td>
+          </tr>
+        <% }) %>
+        <a href="/">Back</a>
+      </tbody>
+    </table>
+  </body>
+</html>
