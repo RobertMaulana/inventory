@@ -17,23 +17,37 @@ router.get("/", (req, res) => {
     })
 });
 
-let dataOrder = [];
+// let dataOrder = [];
 router.post("/", (req, res) => {
-  dataOrder.push({productId: req.body.productId, nama_product: req.body.nama_product, harga: req.body.harga});
+  // dataOrder.push({productId: req.body.productId, nama_product: req.body.nama_product, harga: req.body.harga});
+  db.Product
+    .findOne(
+      {where: {productId: req.body.productId}}
+    )
+    .then((data)=> {
+      db.Product
+        .update(
+          {quantity: Number(data.quantity)-1},
+          {where: {productId: req.body.productId}}
+        )
+        .then(() => {
+          console.log("updated");
+        })
+        .catch((err) => {
+          console.log(err.message);
+        })
+    })
 });
 
-
 router.get("/checkout", (req, res) => {
-  dataOrder.forEach((order) => {
-    db.Order
-      .create(order)
-      .then(() => {
-      })
-      .catch((err)=> {
-        res.send(err.message)
-      })
-  })
-  res.redirect("/data-product")
+  db.Product
+    .findAll()
+    .then((data) => {
+        res.render("order-product", {data: data})
+    })
+    .catch(()=> {
+      res.send("error!")
+    })
 })
 
 module.exports = router
