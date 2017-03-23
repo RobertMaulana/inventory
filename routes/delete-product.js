@@ -15,7 +15,7 @@ router.get("/:product_id", (req, res) => {
       res.redirect("/data-product");
     })
     .catch((err)=> {
-      res.send(err)
+      res.send(err.message)
     })
 });
 

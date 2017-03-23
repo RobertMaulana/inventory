@@ -143,8 +143,8 @@
     <script type="text/javascript">
         let arrHarga = [];
         let total = [];
-        function buy(productId, nama_product, harga){
-          $.post("http://localhost:3000/order-product", {productId: productId, nama_product: nama_product, harga: harga})
+        function buy(productId, nama_product, harga, createdAt){
+          $.post("http://localhost:3000/order-product", {productId: productId, nama_product: nama_product, harga: harga, createdAt: createdAt})
           arrHarga.push(harga);
           if (productId !=="") {
             let el = document.createElement("tr");

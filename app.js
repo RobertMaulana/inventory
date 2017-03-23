@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
-//Home Page, Product and Checkout
+//Home, Product & Checkout
 const index = require('./routes/index');
 const product = require('./routes/product');
 const addProduct = require('./routes/add-product');
@@ -24,7 +24,10 @@ const updateCategory = require('./routes/update-category');
 const deleteCategory = require('./routes/delete-category');
 const searchCategory = require('./routes/search-category');
 
-//Home Page, Product and Checkout
+//Report
+const report = require('./routes/report')
+
+
 app.use('/', index);
 app.use('/product', product);
 app.use('/add-product', addProduct);
@@ -36,7 +39,6 @@ app.use('/order-product', orderProduct);
 app.use('/', checkout);
 app.use('/search-product', searchProduct);
 
-//Category
 app.use('/category', category);
 app.use('/create-category', createCategory);
 app.use('/update-category', updateCategory);
@@ -44,6 +46,9 @@ app.use('/read-category', readCategory);
 app.use('/edit-category', editCategory)
 app.use('/delete-category', deleteCategory);
 app.use('/search-category', searchCategory);
+
+app.use('/report', report)
+
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
