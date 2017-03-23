@@ -14,6 +14,7 @@ const orderProduct = require('./routes/order-product');
 const checkout = require('./routes/order-product');
 const searchProduct = require('./routes/search-product');
 
+
 //Category
 const category = require('./routes/category');
 const readCategory = require('./routes/read-category');
@@ -21,6 +22,7 @@ const editCategory = require('./routes/edit-category');
 const createCategory = require('./routes/create-category');
 const updateCategory = require('./routes/update-category');
 const deleteCategory = require('./routes/delete-category');
+const searchCategory = require('./routes/search-category');
 
 //Home Page, Product and Checkout
 app.use('/', index);
@@ -41,6 +43,7 @@ app.use('/update-category', updateCategory);
 app.use('/read-category', readCategory);
 app.use('/edit-category', editCategory)
 app.use('/delete-category', deleteCategory);
+app.use('/search-category', searchCategory);
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
