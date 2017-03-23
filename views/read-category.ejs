@@ -37,6 +37,7 @@
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Menu</span>
         <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/">Home</a>
           <a class="mdl-navigation__link" href="/data-product">Data Product</a>
           <a class="mdl-navigation__link" href="/read-category">Category</a>
           <a class="mdl-navigation__link" href="/order-product">Order Product</a>
@@ -57,30 +58,30 @@
                 </thead>
                 <tbody>
                   <h3>All Category</h3>
-                  <% let no = 0;%>
+                  <!-- <a href="/category">Add</a> -->
+                  <% let no = 1;%>
                   <% data.forEach((category) => { %>
-                    <% no++; %>
                     <tr>
-                      <td><%= no %></td>
+                      <td><%= no++ %></td>
                       <td><%= category.nama_category %></td>
                       <td><a href="/edit-category/<%=category.id%>">Edit Category</a></td>
-                      <td><a href="/delete-category/<%=category.id%>">Delete Category</a></td>
+                      <td><a onclick="return confirm('Are you sure?')" href="/delete-category/<%=category.id%>">Delete Category</a></td>
                     </tr>
                   <% }) %>
-                  <form action="/search-product" method="post">
+                  <form action="/search-category" method="post">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
                       <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
                         <i class="material-icons">search</i>
                       </label>
                       <div class="mdl-textfield__expandable-holder">
-                        <input class="mdl-textfield__input" type="text" id="sample6" name="search_product">
+                        <input class="mdl-textfield__input" type="text" id="sample6" name="search_category">
                         <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
                       </div>
                     </div>
                   </form>
                   <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">more_vert</i> </button>
                   <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-                    <a href="/product"><li class="mdl-menu__item">Add Product</li></a>
+                    <a href="/category"><li class="mdl-menu__item">Add Category</li></a>
                     <a href="/"><li class="mdl-menu__item">Back</li></a>
                   </ul>
                 </tbody>
