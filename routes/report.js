@@ -3,14 +3,18 @@ const app = express();
 const bodyParser = require("body-parser");
 const router = express.Router();
 const db = require("../models");
+const month = require("../helper/month");
 
 
 router.get('/', (req, res, next) => {
-  let toSort = []
+  let toSort = [];
   db.Order.findAll()
   .then((data) => {
+    let date = new Date();
     data.forEach((newData)=>{
-      toSort.push(newData.nama_product)
+      if ((date.getMonth()+1) == month(newData.updatedAt)) {
+        toSort.push(newData.nama_product)
+      }
     })
     function count() {
       toSort.sort()
@@ -39,10 +43,10 @@ router.get('/', (req, res, next) => {
           order: count
         }
         report.push(reportData)
-
       }
       return report
     }
+
     res.render('report', {data: count()})
   })
   .catch((err) => {
