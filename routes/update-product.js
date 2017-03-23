@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.post("/", (req, res) => {
   db.Product
     .update(
-      {productId: parseInt(req.body.product_id), nama_product: req.body.nama_product, harga: req.body.harga, quantity: req.body.quantity, CategoryId: parseInt(req.body.category_id)},
+      {nama_product: req.body.nama_product, harga: req.body.harga, quantity: req.body.quantity, CategoryId: parseInt(req.body.category_id)},
       {where: {productId: parseInt(req.body.product_id_old)}}
     )
     .then(() => {

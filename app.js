@@ -11,6 +11,7 @@ const updateProduct = require('./routes/update-product');
 const deleteProducts = require('./routes/delete-product');
 const orderProduct = require('./routes/order-product');
 const checkout = require('./routes/order-product');
+const searchProduct = require('./routes/search-product');
 
 const category = require('./routes/category');
 const readCategory = require('./routes/read-category');
@@ -28,6 +29,7 @@ app.use('/update-product', updateProduct);
 app.use('/delete-product', deleteProducts);
 app.use('/order-product', orderProduct);
 app.use('/', checkout);
+app.use('/search-product', searchProduct);
 
 
 app.set("view engine", "ejs");

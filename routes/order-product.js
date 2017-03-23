@@ -17,9 +17,9 @@ router.get("/", (req, res) => {
     })
 });
 
-// let dataOrder = [];
+let dataOrder = [];
 router.post("/", (req, res) => {
-  // dataOrder.push({productId: req.body.productId, nama_product: req.body.nama_product, harga: req.body.harga});
+  dataOrder.push({productId: req.body.productId, nama_product: req.body.nama_product, harga: req.body.harga});
   db.Product
     .findOne(
       {where: {productId: req.body.productId}}
@@ -40,14 +40,16 @@ router.post("/", (req, res) => {
 });
 
 router.get("/checkout", (req, res) => {
-  db.Product
-    .findAll()
-    .then((data) => {
-        res.render("order-product", {data: data})
-    })
-    .catch(()=> {
-      res.send("error!")
-    })
+  dataOrder.forEach((order) => {
+    db.Order
+      .create(order)
+      .then(() => {
+      })
+      .catch((err)=> {
+        res.send(err.message)
+      })
+  })
+  res.redirect("/data-product")
 })
 
 module.exports = router

@@ -20,78 +20,81 @@
     </style>
   </head>
   <body>
-    <!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title">Inventory Management</span>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-      <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-      </nav> -->
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Menu</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="/data-product">Data Product</a>
-      <a class="mdl-navigation__link" href="/order-product">Order Product</a>
-    </nav>
-  </div>
-  <main class="mdl-layout__content">
-    <div class="page-content">
-      <!-- Your content goes here -->
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--7-col">
-          <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-            <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric">No</th>
-                <th class="mdl-data-table__cell--non-numeric">Nama Product</th>
-                <th class="mdl-data-table__cell--non-numeric">Harga</th>
-                <th class="mdl-data-table__cell--non-numeric">Quantity</th>
-                <th class="mdl-data-table__cell--non-numeric">Category Id</th>
-                <th class="mdl-data-table__cell--non-numeric">Edit Product</th>
-                <th class="mdl-data-table__cell--non-numeric">Delete Product</th>
-              </tr>
-            </thead>
-            <tbody>
-              <h3>All Product</h3>
-              <% let no = 0;%>
-              <% data.forEach((product) => { %>
-                <% no++; %>
-                <tr>
-                  <td><%= no %></td>
-                  <td><%= product.nama_product %></td>
-                  <td><%= product.harga %></td>
-                  <td><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="<%= product.quantity %>"></div></td>
-                  <td><%= product.CategoryId %></td>
-                  <td><a href="/edit-product/<%=product.productId%>">Edit Product</a></td>
-                  <td><a href="/delete-product/<%=product.productId%>">Delete Product</a></td>
-                </tr>
-              <% }) %>
-              <button id="demo-menu-lower-right"
-                      class="mdl-button mdl-js-button mdl-button--icon">
-                <i class="material-icons">more_vert</i>
-              </button>
-              <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-                <a href="/product"><li class="mdl-menu__item">Add Product</li></a>
-                <a href="/"><li class="mdl-menu__item">Back</li></a>
-              </ul>
-            </tbody>
-          </table>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Inventory Management</span>
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+          </nav> -->
         </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Menu</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/data-product">Data Product</a>
+          <a class="mdl-navigation__link" href="/read-category">Category</a>
+          <a class="mdl-navigation__link" href="/order-product">Order Product</a>
+        </nav>
       </div>
-
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--7-col">
+              <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">No</th>
+                    <th class="mdl-data-table__cell--non-numeric">Nama Product</th>
+                    <th class="mdl-data-table__cell--non-numeric">Harga</th>
+                    <th class="mdl-data-table__cell--non-numeric">Quantity</th>
+                    <th class="mdl-data-table__cell--non-numeric">Category Id</th>
+                    <th class="mdl-data-table__cell--non-numeric">Edit Product</th>
+                    <th class="mdl-data-table__cell--non-numeric">Delete Product</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <h3>All Product</h3>
+                  <% let no = 0;%>
+                  <% data.forEach((product) => { %>
+                    <% no++; %>
+                    <tr>
+                      <td><%= no %></td>
+                      <td><%= product.nama_product %></td>
+                      <td><%= product.harga %></td>
+                      <td><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="<%= product.quantity %>"></div></td>
+                      <td><%= product.CategoryId %></td>
+                      <td><a href="/edit-product/<%=product.productId%>">Edit Product</a></td>
+                      <td><a onclick="return confirm('Are you sure?')" href="/delete-product/<%=product.productId%>">Delete Product</a></td>
+                    </tr>
+                  <% }) %>
+                  <form action="/search-product" method="post">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                      <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                        <i class="material-icons">search</i>
+                      </label>
+                      <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" id="sample6" name="search_product">
+                        <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+                      </div>
+                    </div>
+                  </form>
+                  <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">more_vert</i> </button>
+                  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                    <a href="/product"><li class="mdl-menu__item">Add Product</li></a>
+                    <a href="/"><li class="mdl-menu__item">Back</li></a>
+                  </ul>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-  </main>
-</div>
-
   </body>
 </html>
