@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Category</th>
+          <th>Edit Category</th>
+          <th>Delete Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <h3>All Category</h3>
+        <a href="/category">Add</a>
+        <% let no = 0;%>
+        <% data.forEach((report) => { %>
+          <% no++; %>
+          <tr>
+            <td><%= no %></td>
+            <td><%= report.nama_product %></td>
+          </tr>
+        <% }) %>
+        <a href="/">Back</a>
+      </tbody>
+    </table
+  </body>
+</html>

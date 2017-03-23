@@ -12,8 +12,8 @@ router.get("/", (req, res) => {
     .then((data) => {
         res.render("data-product", {data: data})
     })
-    .catch(()=> {
-      res.send("error!")
+    .catch((err)=> {
+      res.send(err.message)
     })
 });
 

@@ -47,7 +47,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // Product.hasMany(models.Category)
-        Product.belongsTo(models.Category, {foreignKey: 'CategoryId'})
+        Product.belongsTo(models.Category)
       }
     }
   });

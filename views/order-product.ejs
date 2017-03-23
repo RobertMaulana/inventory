@@ -70,6 +70,7 @@
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="/data-product">Data Product</a>
           <a class="mdl-navigation__link" href="">Order Product</a>
+          <a class="mdl-navigation__link" href="/report">Report</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
@@ -141,8 +142,8 @@
     <script type="text/javascript">
         let arrHarga = [];
         let total = [];
-        function buy(productId, nama_product, harga){
-          $.post("http://localhost:3000/order-product", {productId: productId, nama_product: nama_product, harga: harga})
+        function buy(productId, nama_product, harga, createdAt){
+          $.post("http://localhost:3000/order-product", {productId: productId, nama_product: nama_product, harga: harga, createdAt: createdAt})
           arrHarga.push(harga);
           if (productId !=="") {
             let el = document.createElement("tr");
