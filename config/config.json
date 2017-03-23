@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "postgres",
-    "password": "root",
-    "database": "inventory",
+    "password": "2103",
+    "database": "inventory_management",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false
