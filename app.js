@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
+//Home, Product & Checkout
 const index = require('./routes/index');
 const product = require('./routes/product');
 const addProduct = require('./routes/add-product');
@@ -13,12 +14,17 @@ const orderProduct = require('./routes/order-product');
 const checkout = require('./routes/order-product');
 const searchProduct = require('./routes/search-product');
 
+//Category
 const category = require('./routes/category');
 const readCategory = require('./routes/read-category');
 const editCategory = require('./routes/edit-category');
 const createCategory = require('./routes/create-category');
 const updateCategory = require('./routes/update-category');
-const deleteCategory = require('./routes/delete-category');yy
+const deleteCategory = require('./routes/delete-category');
+
+//Report
+const report = require('./routes/report')
+
 
 app.use('/', index);
 app.use('/product', product);
@@ -30,6 +36,15 @@ app.use('/delete-product', deleteProducts);
 app.use('/order-product', orderProduct);
 app.use('/', checkout);
 app.use('/search-product', searchProduct);
+
+app.use('/category', category);
+app.use('/create-category', createCategory);
+app.use('/update-category', updateCategory);
+app.use('/read-category', readCategory);
+app.use('/edit-category', editCategory)
+app.use('/delete-category', deleteCategory);
+
+app.use('/report', report)
 
 
 app.set("view engine", "ejs");

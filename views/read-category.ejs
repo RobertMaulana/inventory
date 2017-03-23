@@ -2,41 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Data Categories</title>
-  </head>
-  <body>
-    <table>
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama Category</th>
-          <th>Edit Category</th>
-          <th>Delete Category</th>
-        </tr>
-      </thead>
-      <tbody>
-        <h3>All Category</h3>
-        <a href="/category">Add</a>
-        <% let no = 0;%>
-        <% data.forEach((category) => { %>
-          <% no++; %>
-          <tr>
-            <td><%= no %></td>
-            <td><%= category.nama_category %></td>
-            <td><a href="/edit-category/<%=category.id%>">Edit Category</a></td>
-            <td><a href="/delete-category/<%=category.id%>">Delete Category</a></td>
-          </tr>
-        <% }) %>
-        <a href="/">Back</a>
-      </tbody>
-    </table>
-  </body>
-</html>
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
     <title>Data Product</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
