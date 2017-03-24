@@ -7,8 +7,11 @@ const db = require("../models");
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("/", (req, res) => {
+
   db.Product
-    .findAll()
+    .findAll(
+      {include: {model: db.Category}}
+    )
     .then((data) => {
         res.render("data-product", {data: data})
     })

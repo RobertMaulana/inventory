@@ -45,6 +45,9 @@
       .demo-card-event > .mdl-card__actions > .mdl-button {
         color: #fff;
       }
+      .full-width {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -80,27 +83,27 @@
           <!-- Your content goes here -->
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--6-col">
-              <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+              <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width">
                 <thead>
                   <tr>
-                    <th class="mdl-data-table__cell--non-numeric">No</th>
-                    <th class="mdl-data-table__cell--non-numeric">Nama Product</th>
-                    <th class="mdl-data-table__cell--non-numeric">Harga</th>
-                    <th class="mdl-data-table__cell--non-numeric">Quantity</th>
-                    <th class="mdl-data-table__cell--non-numeric">Beli</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">No</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">Product Name</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">Price</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">Quantity</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">Order</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <h3>Product</h3>
+                  <h3 style="text-align: center;">Product</h3>
                   <% let no = 0;%>
                   <% data.forEach((product) => { %>
                     <% no++; %>
                     <tr>
-                      <td><%= no %></td>
-                      <td><%= product.nama_product %></td>
-                      <td><%= product.harga %></td>
-                      <td><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="<%= product.quantity %>"></div></td>
-                      <td>
+                      <td style="text-align: center;"><%= no %></td>
+                      <td style="text-align: center;"><%= product.nama_product %></td>
+                      <td style="text-align: center;">Rp. <%= product.harga.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") %></td>
+                      <td style="text-align: center;"><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="<%= product.quantity %>"></div></td>
+                      <td style="text-align: center;">
                         <button onclick="buy(<%= product.productId%>, '<%= product.nama_product %>', <%= product.harga %>)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                           <i class="material-icons">shop</i>
                         </button>
@@ -111,15 +114,15 @@
               </table>
             </div>
             <div class="mdl-cell mdl-cell--3-col">
-              <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+              <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width">
                 <thead>
                   <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Nama Product</th>
-                    <th class="mdl-data-table__cell--non-numeric">Harga</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: right;">Product Name</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: right;">Price</th>
                   </tr>
                 </thead>
                 <tbody id="ordered_list">
-                  <h3>Ordered</h3>
+                  <h3 style="text-align: center;">Ordered</h3>
                 </tbody>
               </table>
             </div>
@@ -127,7 +130,7 @@
               <h3>Total</h3>
               <div class="demo-card-event mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title mdl-card--expand">
-                  <h4>
+                  <h4 style="margin-top: 60px;margin-left: 40px;">
                     Rp. <span id="total_belanja"></span>
                   </h4>
                 </div>
@@ -152,7 +155,7 @@
             let td = document.createElement("td");
             let td2 =  document.createElement("td");
             let cont = document.createTextNode(nama_product);
-            let cont1 = document.createTextNode(harga);
+            let cont1 = document.createTextNode("Rp. "+ harga.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1."));
             td.appendChild(cont)
             td2.appendChild(cont1)
             el.appendChild(td)
@@ -166,7 +169,7 @@
               return a + b;
           }
           total.push(sum);
-          let cek = document.querySelector("#total_belanja").innerHTML = total.pop();
+          let cek = document.querySelector("#total_belanja").innerHTML = total.pop().toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
         }
     </script>
   </body>

@@ -17,6 +17,16 @@
       a{
         text-decoration: none;
       }
+      .custom_select{
+        width: 41.5%;
+        margin-bottom: 20px;
+        padding: 8px;
+        border: none;
+      }
+      .custom_select_label{
+        color: rgb(63,81,181);
+        font-size: 12px;
+      }
     </style>
   </head>
   <body>
@@ -56,20 +66,27 @@
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   <input class="mdl-textfield__input" type="text" id="sample3" name="nama_product" value="">
-                  <label class="mdl-textfield__label" for="nama_product">Nama Product...</label>
+                  <label class="mdl-textfield__label" for="nama_product">Product Name...</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   <input class="mdl-textfield__input" type="text" id="sample3" name="harga" value="">
-                  <label class="mdl-textfield__label" for="harga">Harga...</label>
+                  <label class="mdl-textfield__label" for="harga">Price...</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   <input class="mdl-textfield__input" type="text" id="sample3" name="quantity" value="">
                   <label class="mdl-textfield__label" for="quantity">Quantity...</label>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="sample3" name="category_id" value="">
-                  <label class="mdl-textfield__label" for="category_id">Category...</label>
                 </div><br>
+                <label for="category_id" class="custom_select_label">Category</label><br>
+                <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"> -->
+                  <!-- <input class="mdl-textfield__input" type="text" id="sample3" name="category_id" value=""> -->
+                  <!-- <label class="mdl-textfield__label" for="category_id">Category Id...</label> -->
+                  <select name="category_id" class="custom_select">
+                      <option selected="true" disabled="disabled">Select...</option>
+                    <% dataCategory.forEach((category) => {%>
+                      <option value="<%= category.id %>"><%= category.nama_category %></option>
+                    <%})%>
+                  </select><br>
+                <!-- </div><br> -->
                 <button style="margin-right: 10px;" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"> Submit!</button>
                 <a class="mdl-button mdl-js-button mdl-button--raised" href="/data-product">Cancel</a>
               </form>

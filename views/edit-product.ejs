@@ -17,6 +17,16 @@
       a{
         text-decoration: none;
       }
+      .custom_select{
+        width: 41.5%;
+        margin-bottom: 20px;
+        padding: 8px;
+        border: none;
+      }
+      .custom_select_label{
+        color: rgb(63,81,181);
+        font-size: 12px;
+      }
     </style>
   </head>
   <body>
@@ -48,8 +58,8 @@
         <div class="page-content">
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--7-col">
-              <h3>Edit</h3>
-              <% data.forEach((products) => { %>
+              <h3>Edit Product</h3>
+              <% dataProduct.forEach((products) => { %>
               <form action="/update-product" method="post">
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" id="sample3" name="product_id" value="<%= products.productId%>">
@@ -57,20 +67,31 @@
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" id="sample3" name="nama_product" value="<%= products.nama_product%>">
-                    <label class="mdl-textfield__label" for="nama_product">Nama Product...</label>
+                    <label class="mdl-textfield__label" for="nama_product">Product Name...</label>
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" id="sample3" name="harga" value="<%= products.harga%>">
-                    <label class="mdl-textfield__label" for="harga">Harga...</label>
+                    <label class="mdl-textfield__label" for="harga">Price...</label>
                   </div>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" id="sample3" name="quantity" value="<%= products.quantity%>">
                     <label class="mdl-textfield__label" for="quantity">Quantity...</label>
-                  </div>
-                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="sample3" name="category_id" value="<%= products.CategoryId%>">
-                    <label class="mdl-textfield__label" for="category_id">Category...</label>
                   </div><br>
+                  <label for="category_id" class="custom_select_label">Category</label><br>
+                  <select class="custom_select" name="category_id">
+                    <option selected="true" disabled="disabled">Select...</option>
+                    <% allCategory.forEach(function(allCategories){ %>
+                      <% idCat.forEach(function(idCats){ %>
+                        <% let check; %>
+                        <% if(idCats.idCategory == allCategories.id) { %>
+                          <% check ="selected" %>
+                        <% }else{ %>
+                          <% check ="" %>
+                        <% } %>
+                        <option value="<%= allCategories.id%>" <%= check %> > <%= allCategories.nama_category %></option>
+                      <% }) %>
+                    <% }) %>
+                  </select><br>
                   <input type="hidden" name="product_id_old" value="<%= products.productId%>">
                   <button style="margin-right: 10px;" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"> Update!</button>
                   <a class="mdl-button mdl-js-button mdl-button--raised" href="/data-product">Cancel</a>
