@@ -17,6 +17,9 @@
       a{
         text-decoration: none;
       }
+      .full-width {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -48,25 +51,25 @@
         <div class="page-content">
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--7-col">
-              <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+              <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width">
                 <thead>
                   <tr>
-                    <th class="mdl-data-table__cell--non-numeric">No</th>
-                    <th class="mdl-data-table__cell--non-numeric">Nama Category</th>
-                    <th class="mdl-data-table__cell--non-numeric">Edit Category</th>
-                    <th class="mdl-data-table__cell--non-numeric">Delete Category</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">No</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">Category Name</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">Edit Category</th>
+                    <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">Delete Category</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <h3>All Category</h3>
+                  <h3 style="text-align: center;">All Category</h3>
                   <!-- <a href="/category">Add</a> -->
                   <% let no = 1;%>
                   <% data.forEach((category) => { %>
                     <tr>
-                      <td><%= no++ %></td>
-                      <td><%= category.nama_category %></td>
-                      <td><a href="/edit-category/<%=category.id%>">Edit Category</a></td>
-                      <td><a onclick="return confirm('Are you sure?')" href="/delete-category/<%=category.id%>">Delete Category</a></td>
+                      <td style="text-align: center;"><%= no++ %></td>
+                      <td style="text-align: center;"><%= category.nama_category %></td>
+                      <td style="text-align: center;"><a href="/edit-category/<%=category.id%>" class="mdl-button mdl-button--mini-fab mdl-button--colored"><i class="material-icons">mode_edit</i></a></td>
+                      <td style="text-align: center;"><a onclick="return confirm('Are you sure?')" href="/delete-category/<%=category.id%>" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" style="color: rgb(244,67,54)"><i class="material-icons">delete</i></a></td>
                     </tr>
                   <% }) %>
                   <form action="/search-category" method="post">

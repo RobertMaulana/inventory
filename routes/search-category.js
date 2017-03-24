@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.post("/", (req, res) => {
   db.Category
     .findAll(
-      {where: {nama_category:{$like: `%${req.body.search_category}%`}}}
+      {where: {nama_category:{$like: `%${req.body.search_category.toLowerCase()}%`}}}
     )
     .then((category) => {
       db.Category
